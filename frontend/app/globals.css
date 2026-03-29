@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light only;
+}
+
+body {
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+  margin: 0;
+  padding: 0;
+}

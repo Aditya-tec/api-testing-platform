@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: api-testing-platform-api
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: ENCRYPTION_SECRET
+        sync: false
+      - key: WORKER_CONCURRENCY
+        value: 5
+      - key: FRONTEND_URL
+        sync: false
+
+  - type: worker
+    name: api-testing-platform-worker
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm run start:worker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: ENCRYPTION_SECRET
+        sync: false
+      - key: WORKER_CONCURRENCY
+        value: 5
