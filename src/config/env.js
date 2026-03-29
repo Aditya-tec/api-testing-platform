@@ -25,6 +25,9 @@ const env = {
 
   // Worker concurrency (how many jobs to process in parallel)
   WORKER_CONCURRENCY: parseInt(process.env.WORKER_CONCURRENCY, 10) || 5,
+
+  // Frontend URL for CORS validation in production
+  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
 };
 
 // Validate required vars at startup

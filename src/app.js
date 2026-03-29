@@ -22,7 +22,7 @@ app.use(helmet());
 // ─── CORS ────────────────────────────────────────────────────────────────────
 // In dev: allow all origins. In production, lock this down to your frontend URL.
 app.use(cors({
-  origin: env.NODE_ENV === "development" ? "*" : process.env.FRONTEND_URL,
+  origin: env.NODE_ENV === "development" ? "*" : env.FRONTEND_URL,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 }));
 
