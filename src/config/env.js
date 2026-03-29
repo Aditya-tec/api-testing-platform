@@ -19,6 +19,12 @@ const env = {
   // Encryption key for stored credentials (auth tokens, API keys)
   // Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
   ENCRYPTION_SECRET: process.env.ENCRYPTION_SECRET || "dev-secret-change-in-production-32chars!",
+
+  // Run worker inside the same process (for free Render tier; disable for dedicated worker)
+  INLINE_WORKER: process.env.INLINE_WORKER || "false",
+
+  // Worker concurrency (how many jobs to process in parallel)
+  WORKER_CONCURRENCY: parseInt(process.env.WORKER_CONCURRENCY, 10) || 5,
 };
 
 // Validate required vars at startup

@@ -10,6 +10,13 @@ const logger = require("./utils/logger");
 const startServer = async () => {
   await connectDB();
 
+  // Start inline worker if enabled (for free Render tier)
+  if (env.INLINE_WORKER === "true") {
+    const { startInlineWorker } = require("./jobs/inlineWorker");
+    startInlineWorker();
+    logger.info("Inline worker started");
+  }
+
   const server = app.listen(env.PORT, () => {
     logger.info(`Server running`, { port: env.PORT, env: env.NODE_ENV });
   });
