@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "start": "node src/server.js",
-  "start:worker": "node src/jobs/worker.js",
-  "dev": "nodemon src/server.js",
-  "worker:dev": "nodemon src/jobs/worker.js"
+    "start": "node src/server.js",
+    "start:worker": "node src/jobs/worker.js",
+    "dev": "nodemon src/server.js",
+    "worker:dev": "nodemon src/jobs/worker.js",
+    "test": "jest --forceExit --detectOpenHandles"
+  },
+"jest": {
+  "testEnvironment": "node",
+  "testMatch": ["**/tests/**/*.test.js"],
+  "testTimeout": 15000,
+  "transformIgnorePatterns": ["node_modules/(?!(is-ip|ip-regex|super-regex|function-timeout)/)"],
+  "moduleNameMapper": {
+    "^is-ip$": "<rootDir>/__mocks__/is-ip.js"
+  }
 },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,6 +40,11 @@
     "validator": "^13.15.26"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "babel-jest": "^30.3.0",
+    "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
