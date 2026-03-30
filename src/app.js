@@ -7,12 +7,14 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
+const swaggerUi = require("swagger-ui-express");
 
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 const notFound = require("./middlewares/notFound");
 const { apiLimiter } = require("./middlewares/rateLimiter");
 const env = require("./config/env");
+const swaggerSpec = require("./config/swagger");
 
 const app = express();
 
@@ -33,6 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 // ─── Request logging ──────────────────────────────────────────────────────────
 // "dev" format in development, "combined" (Apache-style) in production
 app.use(morgan(env.NODE_ENV === "development" ? "dev" : "combined"));
+
+// ─── Swagger API documentation ────────────────────────────────────────────────
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ─── API routes ───────────────────────────────────────────────────────────────
 app.use("/api/v1", apiLimiter, routes);
