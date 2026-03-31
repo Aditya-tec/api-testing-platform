@@ -1,4 +1,4 @@
-# API Testing Platform
+# Distributed API Workflow Execution Platform 
 
 A full-stack platform for **defining, running, and monitoring API test collections**—built to replace ad-hoc Postman runs with **repeatable execution, queued workers, results history, and metrics**.
 
