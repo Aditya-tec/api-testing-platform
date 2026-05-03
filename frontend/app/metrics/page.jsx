@@ -15,32 +15,32 @@ export default function MetricsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p className="text-gray-500">Loading metrics...</p>;
-  if (!metrics) return <p className="text-red-500">Failed to load metrics.</p>;
+  if (loading) return <p className="terminal-muted">Loading metrics...</p>;
+  if (!metrics) return <p className="text-[#ffb3bb]">Failed to load metrics.</p>;
 
   const { jobs, requests, recentFailures } = metrics;
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">System Metrics</h1>
+      <h1 className="mb-6 text-2xl font-semibold tracking-[0.18em] uppercase text-[#f2fff2]">System Metrics</h1>
 
       {/* Job stats */}
-      <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Jobs</h2>
+      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8fa28f]">Jobs</h2>
       <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">Total Jobs</p>
-          <p className="text-2xl font-bold text-gray-900">{jobs.total}</p>
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">Total Jobs</p>
+          <p className="text-2xl font-semibold text-[#f0fff0]">{jobs.total}</p>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">Success Rate</p>
-          <p className="text-2xl font-bold text-green-600">{jobs.successRate}</p>
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">Success Rate</p>
+          <p className="text-2xl font-semibold text-[#8fe0a2]">{jobs.successRate}</p>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">By Status</p>
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">By Status</p>
           <div className="flex flex-wrap gap-1 mt-1">
             {Object.entries(jobs.byStatus).filter(([, v]) => v > 0).map(([status, count]) => (
               <span key={status} className="text-xs">
-                <StatusBadge status={status} /> <span className="text-gray-600">{count}</span>
+                <StatusBadge status={status} /> <span className="text-[#9fb09f]">{count}</span>
               </span>
             ))}
           </div>
@@ -48,24 +48,24 @@ export default function MetricsPage() {
       </div>
 
       {/* Request stats */}
-      <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Requests</h2>
+      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8fa28f]">Requests</h2>
       <div className="grid grid-cols-3 gap-3 mb-8">
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">Total Requests</p>
-          <p className="text-2xl font-bold text-gray-900">{requests.total}</p>
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">Total Requests</p>
+          <p className="text-2xl font-semibold text-[#f0fff0]">{requests.total}</p>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">Avg Latency</p>
-          <p className="text-2xl font-bold text-gray-900">
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">Avg Latency</p>
+          <p className="text-2xl font-semibold text-[#f0fff0]">
             {requests.avgLatencyMs ? `${requests.avgLatencyMs}ms` : "—"}
           </p>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-          <p className="text-xs text-gray-400">By Status</p>
+        <div className="terminal-panel px-4 py-3">
+          <p className="text-xs terminal-muted">By Status</p>
           <div className="flex flex-wrap gap-1 mt-1">
             {Object.entries(requests.byStatus).filter(([, v]) => v > 0).map(([status, count]) => (
               <span key={status} className="text-xs">
-                <StatusBadge status={status} /> <span className="text-gray-600">{count}</span>
+                <StatusBadge status={status} /> <span className="text-[#9fb09f]">{count}</span>
               </span>
             ))}
           </div>
@@ -75,19 +75,19 @@ export default function MetricsPage() {
       {/* Recent failures */}
       {recentFailures.length > 0 && (
         <div>
-          <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Recent Failures</h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8fa28f]">Recent Failures</h2>
           <div className="space-y-2">
             {recentFailures.map((job) => (
               <Link
                 key={job._id}
                 href={`/jobs/${job._id}`}
-                className="flex items-center justify-between bg-white border border-gray-200 rounded px-4 py-3 hover:border-gray-400 transition"
+                className="terminal-panel flex items-center justify-between px-4 py-3 transition hover:border-[#39516b]"
               >
                 <div className="flex items-center gap-3">
                   <StatusBadge status={job.status} />
-                  <span className="text-sm text-gray-700">{job.collectionId?.name || "Unknown collection"}</span>
+                  <span className="text-sm text-[#dbeedb]">{job.collectionId?.name || "Unknown collection"}</span>
                 </div>
-                <span className="text-xs text-gray-400">{new Date(job.createdAt).toLocaleString()}</span>
+                <span className="text-xs terminal-muted">{new Date(job.createdAt).toLocaleString()}</span>
               </Link>
             ))}
           </div>

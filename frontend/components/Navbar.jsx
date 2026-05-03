@@ -13,15 +13,15 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-gray-900 text-white px-6 py-3 flex items-center gap-8">
-      <span className="font-bold text-lg tracking-tight">API Tester</span>
+    <nav className="flex flex-col gap-3 border-b border-[#1a1f1d] bg-[#020202] px-4 py-3 text-[#e7ece7] md:flex-row md:items-center md:gap-8 md:px-6">
+      <span className="text-base font-semibold tracking-[0.24em] uppercase text-[#d6ddd6]">API Tester</span>
       <div className="flex gap-6">
         {links.map(({ href, label }) => (
           <Link
             key={href}
             href={href}
-            className={`text-sm hover:text-white transition-colors ${
-              pathname === href ? "text-white font-semibold" : "text-gray-400"
+            className={`text-sm transition-colors ${
+              pathname === href ? "text-[#f5f7f5]" : "text-[#9aa19a] hover:text-[#eef2ee]"
             }`}
           >
             {label}

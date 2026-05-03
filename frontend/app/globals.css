@@ -5,12 +5,97 @@
 }
 
 html {
-  color-scheme: light only;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #f9fafb !important;
-  color: #111827 !important;
+  background-color: #000000 !important;
+  color: #e7ece7 !important;
   margin: 0;
   padding: 0;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+body::selection {
+  background: #1f3b2f;
+  color: #f0fff0;
+}
+
+a {
+  color: inherit;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+.terminal-shell {
+  background: #000000;
+  color: #e7ece7;
+}
+
+.terminal-panel {
+  background: #050505;
+  border: 1px solid #1a1f1d;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.85), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.terminal-panel-strong {
+  background: #030303;
+  border: 1px solid #1f2422;
+}
+
+.terminal-muted {
+  color: #9aa19a;
+}
+
+.terminal-input {
+  width: 100%;
+  border: 1px solid #232827;
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  background: #050505;
+  color: #f0f2f0;
+  outline: none;
+}
+
+.terminal-input:focus {
+  border-color: #4d5550;
+  box-shadow: 0 0 0 2px rgba(90, 96, 94, 0.22);
+}
+
+.terminal-button {
+  border: 1px solid #252b28;
+  background: #060606;
+  color: #edf0ed;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.terminal-button:hover {
+  background: #101110;
+  border-color: #424845;
+}
+
+.terminal-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.terminal-link {
+  color: #b7c0b7;
+}
+
+.terminal-link:hover {
+  color: #eef2ee;
+}
+
+.terminal-code {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }

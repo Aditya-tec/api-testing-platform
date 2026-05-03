@@ -55,8 +55,8 @@ export default function JobDetailPage() {
     return () => clearInterval(interval);
   }, [fetchAll]);
 
-  if (loading) return <p className="text-gray-500">Loading job...</p>;
-  if (!job) return <p className="text-red-500">Job not found.</p>;
+  if (loading) return <p className="terminal-muted">Loading job...</p>;
+  if (!job) return <p className="text-[#ffb3bb]">Job not found.</p>;
 
   const isLive = !TERMINAL_STATUSES.includes(job.status);
 
@@ -64,15 +64,15 @@ export default function JobDetailPage() {
     <div>
       {/* Header */}
       <div className="mb-6">
-        <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">← Collections</Link>
+        <Link href="/" className="text-sm terminal-muted hover:text-[#dbeedb]">← Collections</Link>
         <div className="flex items-center gap-3 mt-1">
-          <h1 className="text-2xl font-bold text-gray-900">Job Detail</h1>
+          <h1 className="text-2xl font-semibold tracking-[0.18em] uppercase text-[#f2fff2]">Job Detail</h1>
           <StatusBadge status={job.status} />
           {isLive && (
-            <span className="text-xs text-blue-500 animate-pulse">● live</span>
+            <span className="text-xs text-[#8cc9ff] animate-pulse">● live</span>
           )}
         </div>
-        <p className="text-xs font-mono text-gray-400 mt-1">{job._id}</p>
+        <p className="mt-1 text-xs terminal-code terminal-muted">{job._id}</p>
       </div>
 
       {/* Job metadata */}
@@ -82,32 +82,32 @@ export default function JobDetailPage() {
           { label: "Started", value: job.startedAt ? new Date(job.startedAt).toLocaleTimeString() : "—" },
           { label: "Duration", value: job.durationMs ? `${job.durationMs}ms` : "—" },
           { label: "Collection", value: (
-            <Link href={`/collections/${job.collectionId}`} className="text-blue-600 hover:underline text-sm">
+            <Link href={`/collections/${job.collectionId}`} className="terminal-link underline text-sm">
               View →
             </Link>
           )},
         ].map(({ label, value }) => (
-          <div key={label} className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-            <p className="text-xs text-gray-400">{label}</p>
-            <p className="text-sm font-semibold text-gray-900 mt-0.5">{value}</p>
+          <div key={label} className="terminal-panel px-4 py-3">
+            <p className="text-xs terminal-muted">{label}</p>
+            <p className="mt-0.5 text-sm font-semibold text-[#f0fff0]">{value}</p>
           </div>
         ))}
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 border-b border-gray-200 mb-4">
+      <div className="mb-4 flex gap-4 border-b border-[#223244]">
         {["results", "logs"].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`pb-2 text-sm font-medium capitalize border-b-2 transition-colors ${
               activeTab === tab
-                ? "border-gray-900 text-gray-900"
-                : "border-transparent text-gray-400 hover:text-gray-600"
+                ? "border-[#9fd0ad] text-[#f0fff0]"
+                : "border-transparent text-[#7f9680] hover:text-[#c8e8cf]"
             }`}
           >
             {tab}
-            <span className="ml-1.5 text-xs bg-gray-100 text-gray-500 rounded-full px-1.5 py-0.5">
+            <span className="ml-1.5 rounded-full border border-[#2a3b52] bg-[#101826] px-1.5 py-0.5 text-xs text-[#9fb09f]">
               {tab === "results" ? results.length : logs.length}
             </span>
           </button>
@@ -118,14 +118,14 @@ export default function JobDetailPage() {
       {activeTab === "results" && (
         <div className="space-y-3">
           {results.map((r) => (
-            <div key={r._id} className="bg-white border border-gray-200 rounded-lg p-4">
+            <div key={r._id} className="terminal-panel p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-gray-400 font-mono">#{r.requestIndex}</span>
-                  <span className="font-medium text-gray-800">{r.requestName}</span>
+                  <span className="text-xs terminal-code terminal-muted">#{r.requestIndex}</span>
+                  <span className="font-medium text-[#dbeedb]">{r.requestName}</span>
                   <StatusBadge status={r.status} />
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400">
+                <div className="flex items-center gap-4 text-xs terminal-muted">
                   {r.httpStatus && (
                     <span className={`font-mono font-semibold ${
                       r.httpStatus < 300 ? "text-green-600" :
@@ -138,13 +138,13 @@ export default function JobDetailPage() {
               </div>
 
               {r.errorMessage && (
-                <div className="bg-red-50 border border-red-100 rounded px-3 py-2 text-xs text-red-700 font-mono mb-2">
+                <div className="mb-2 rounded border border-[#5a3030] bg-[#2a1216] px-3 py-2 text-xs text-[#ffb3bb] terminal-code">
                   {r.errorMessage}
                 </div>
               )}
 
               {r.responseSnippet && (
-                <pre className="bg-gray-50 border border-gray-100 rounded px-3 py-2 text-xs text-gray-600 overflow-x-auto whitespace-pre-wrap break-all">
+                <pre className="terminal-panel-strong overflow-x-auto rounded px-3 py-2 text-xs text-[#d5e7d5] whitespace-pre-wrap break-all">
                   {(() => {
                     try {
                       return JSON.stringify(JSON.parse(r.responseSnippet), null, 2);
@@ -161,10 +161,10 @@ export default function JobDetailPage() {
 
       {/* Logs tab */}
       {activeTab === "logs" && (
-        <div className="bg-gray-900 rounded-lg p-4 font-mono text-xs text-gray-300 space-y-1.5 max-h-[500px] overflow-y-auto">
+        <div className="terminal-panel-strong max-h-[500px] space-y-1.5 overflow-y-auto p-4 text-xs text-[#d5e7d5] terminal-code">
           {logs.map((log) => (
             <div key={log._id} className="flex gap-4">
-              <span className="text-gray-500 shrink-0">
+              <span className="shrink-0 text-[#7f9680]">
                 {new Date(log.timestamp).toISOString().slice(11, 23)}
               </span>
               <span className={`shrink-0 font-semibold ${
@@ -176,7 +176,7 @@ export default function JobDetailPage() {
               }`}>
                 {log.event}
               </span>
-              <span className="text-gray-400 truncate">
+              <span className="truncate text-[#9fb09f]">
                 {JSON.stringify(log.meta)}
               </span>
             </div>

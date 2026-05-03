@@ -2,17 +2,17 @@
 // Consistent color-coded status pill used across all pages.
 
 const colors = {
-  COMPLETED: "bg-green-100 text-green-800",
-  FAILED:    "bg-red-100 text-red-800",
-  PARTIAL:   "bg-yellow-100 text-yellow-800",
-  RUNNING:   "bg-blue-100 text-blue-800",
-  PENDING:   "bg-gray-100 text-gray-600",
-  SKIPPED:   "bg-purple-100 text-purple-700",
+  COMPLETED: "border-[#26312a] bg-[#050505] text-[#bfc9c0]",
+  FAILED: "border-[#322627] bg-[#050505] text-[#d7c0c3]",
+  PARTIAL: "border-[#302d23] bg-[#050505] text-[#cdc8b3]",
+  RUNNING: "border-[#24303a] bg-[#050505] text-[#b4c4d0]",
+  PENDING: "border-[#232827] bg-[#050505] text-[#b5bbb6]",
+  SKIPPED: "border-[#2e2735] bg-[#050505] text-[#cbbfd9]",
 };
 
 export default function StatusBadge({ status }) {
   return (
-    <span className={`inline-block px-2 py-0.5 rounded text-xs font-semibold ${colors[status] || "bg-gray-100 text-gray-500"}`}>
+    <span className={`inline-block rounded border px-2 py-0.5 text-xs font-semibold ${colors[status] || "border-[#232827] bg-[#050505] text-[#b5bbb6]"}`}>
       {status}
     </span>
   );

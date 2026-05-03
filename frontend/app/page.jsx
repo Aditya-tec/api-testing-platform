@@ -44,37 +44,40 @@ export default function CollectionsPage() {
     }
   };
 
-  if (loading) return <p className="text-gray-500">Loading collections...</p>;
+  if (loading) return <p className="terminal-muted">Loading collections...</p>;
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Collections</h1>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-[0.18em] uppercase text-[#f2fff2]">Collections</h1>
+          <p className="mt-1 text-sm terminal-muted">Manage request sets and run them like jobs in a console.</p>
+        </div>
         <Link
           href="/collections/new"
-          className="bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-700 transition"
+          className="terminal-button"
         >
           + New Collection
         </Link>
       </div>
 
       {collections.length === 0 ? (
-        <p className="text-gray-500">No collections yet. Create one to get started.</p>
+        <p className="terminal-muted">No collections yet. Create one to get started.</p>
       ) : (
         <div className="space-y-3">
           {collections.map((col) => (
             <div
               key={col._id}
-              className="bg-white border border-gray-200 rounded-lg px-5 py-4 flex items-center justify-between"
+              className="terminal-panel flex items-center justify-between gap-4 px-5 py-4"
             >
               <div>
                 <Link
                   href={`/collections/${col._id}`}
-                  className="font-semibold text-gray-900 hover:underline"
+                  className="font-semibold text-[#f0fff0] hover:underline"
                 >
                   {col.name}
                 </Link>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="mt-0.5 text-xs terminal-muted">
                   {col.executionMode} · created {new Date(col.createdAt).toLocaleDateString()}
                 </p>
               </div>
@@ -83,27 +86,27 @@ export default function CollectionsPage() {
                 {runningJobs[col._id] ? (
                   <Link
                     href={`/jobs/${runningJobs[col._id]}`}
-                    className="text-xs text-blue-600 underline"
+                    className="text-xs terminal-link underline"
                   >
                     View job →
                   </Link>
                 ) : (
                   <button
                     onClick={() => handleRun(col._id)}
-                    className="bg-green-600 text-white px-3 py-1.5 rounded text-sm hover:bg-green-700 transition"
+                    className="terminal-button px-3 py-1.5 text-sm"
                   >
                     ▶ Run
                   </button>
                 )}
                 <Link
                   href={`/collections/${col._id}`}
-                  className="text-sm text-gray-500 hover:text-gray-800"
+                  className="text-sm terminal-muted hover:text-[#dbeedb]"
                 >
                   Details
                 </Link>
                 <button
                   onClick={() => handleDelete(col._id)}
-                  className="text-sm text-red-400 hover:text-red-600"
+                  className="text-sm text-[#ef8f99] hover:text-[#ffb9c1]"
                 >
                   Delete
                 </button>

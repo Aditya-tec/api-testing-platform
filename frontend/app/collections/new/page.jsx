@@ -65,31 +65,32 @@ export default function NewCollectionPage() {
   };
 
   return (
-    <div style={{ maxWidth: 640, fontFamily: "sans-serif" }}>
-      <h1 style={{ fontSize: 24, fontWeight: "bold", marginBottom: 24 }}>
+    <div className="max-w-3xl">
+      <h1 className="mb-3 text-2xl font-semibold tracking-[0.18em] uppercase text-[#f2fff2]">
         New Collection
       </h1>
+      <p className="mb-6 text-sm terminal-muted">Build the collection as a set of terminal-style request blocks.</p>
 
       {error && (
-        <div style={{ background: "#fef2f2", border: "1px solid #fca5a5", color: "#dc2626", borderRadius: 6, padding: "12px 16px", marginBottom: 20, fontSize: 14 }}>
+        <div className="terminal-panel mb-5 border-[#5a3030] bg-[#2a1216] px-4 py-3 text-sm text-[#ffb3bb]">
           {error}
         </div>
       )}
 
-      <div style={{ marginBottom: 16 }}>
-        <label style={{ display: "block", fontSize: 14, fontWeight: 500, marginBottom: 6 }}>Collection Name</label>
+      <div className="mb-4">
+        <label className="mb-2 block text-sm font-medium text-[#cfe0cf]">Collection Name</label>
         <input
-          style={{ width: "100%", border: "1px solid #d1d5db", borderRadius: 6, padding: "8px 12px", fontSize: 14, background: "#fff", color: "#111" }}
+          className="terminal-input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="My API Collection"
         />
       </div>
 
-      <div style={{ marginBottom: 16 }}>
-        <label style={{ display: "block", fontSize: 14, fontWeight: 500, marginBottom: 6 }}>Execution Mode</label>
+      <div className="mb-4">
+        <label className="mb-2 block text-sm font-medium text-[#cfe0cf]">Execution Mode</label>
         <select
-          style={{ border: "1px solid #d1d5db", borderRadius: 6, padding: "8px 12px", fontSize: 14, background: "#fff", color: "#111" }}
+          className="terminal-input max-w-xs"
           value={executionMode}
           onChange={(e) => setExecutionMode(e.target.value)}
         >
@@ -99,10 +100,10 @@ export default function NewCollectionPage() {
       </div>
 
       {authProfiles.length > 0 && (
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ display: "block", fontSize: 14, fontWeight: 500, marginBottom: 6 }}>Auth Profile (optional)</label>
+        <div className="mb-4">
+          <label className="mb-2 block text-sm font-medium text-[#cfe0cf]">Auth Profile (optional)</label>
           <select
-            style={{ border: "1px solid #d1d5db", borderRadius: 6, padding: "8px 12px", fontSize: 14, background: "#fff", color: "#111" }}
+            className="terminal-input max-w-md"
             value={authProfileId}
             onChange={(e) => setAuthProfileId(e.target.value)}
           >
@@ -114,45 +115,45 @@ export default function NewCollectionPage() {
         </div>
       )}
 
-      <div style={{ marginBottom: 20 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <label style={{ fontSize: 14, fontWeight: 500 }}>Requests</label>
+      <div className="mb-5">
+        <div className="mb-3 flex items-center justify-between gap-4">
+          <label className="text-sm font-medium text-[#cfe0cf]">Requests</label>
           <button
             onClick={addRequest}
-            style={{ fontSize: 13, color: "#2563eb", background: "none", border: "none", cursor: "pointer" }}
+            className="text-sm text-[#8fd1a5] hover:text-[#b7f0c7]"
           >
             + Add Request
           </button>
         </div>
 
         {requests.map((req, i) => (
-          <div key={i} style={{ border: "1px solid #e5e7eb", borderRadius: 8, padding: 16, marginBottom: 12, background: "#fff" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
-              <span style={{ fontSize: 12, color: "#6b7280", fontWeight: 600 }}>Request {i + 1}</span>
+          <div key={i} className="terminal-panel mb-3 px-4 py-4">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-xs font-semibold tracking-[0.12em] uppercase terminal-muted">Request {i + 1}</span>
               {requests.length > 1 && (
                 <button
                   onClick={() => removeRequest(i)}
-                  style={{ fontSize: 12, color: "#ef4444", background: "none", border: "none", cursor: "pointer" }}
+                  className="text-xs text-[#ef8f99] hover:text-[#ffb9c1]"
                 >
                   Remove
                 </button>
               )}
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 10 }}>
+            <div className="mb-3 grid gap-3 md:grid-cols-3">
               <div>
-                <label style={{ fontSize: 12, color: "#6b7280", display: "block", marginBottom: 4 }}>Name</label>
+                <label className="mb-1 block text-xs terminal-muted">Name</label>
                 <input
-                  style={{ width: "100%", border: "1px solid #d1d5db", borderRadius: 4, padding: "6px 10px", fontSize: 13, background: "#fff", color: "#111" }}
+                  className="terminal-input py-2 text-sm"
                   value={req.name}
                   onChange={(e) => updateRequest(i, "name", e.target.value)}
                   placeholder="Get Users"
                 />
               </div>
               <div>
-                <label style={{ fontSize: 12, color: "#6b7280", display: "block", marginBottom: 4 }}>Method</label>
+                <label className="mb-1 block text-xs terminal-muted">Method</label>
                 <select
-                  style={{ width: "100%", border: "1px solid #d1d5db", borderRadius: 4, padding: "6px 10px", fontSize: 13, background: "#fff", color: "#111" }}
+                  className="terminal-input py-2 text-sm"
                   value={req.method}
                   onChange={(e) => updateRequest(i, "method", e.target.value)}
                 >
@@ -162,10 +163,10 @@ export default function NewCollectionPage() {
                 </select>
               </div>
               <div>
-                <label style={{ fontSize: 12, color: "#6b7280", display: "block", marginBottom: 4 }}>Timeout (ms)</label>
+                <label className="mb-1 block text-xs terminal-muted">Timeout (ms)</label>
                 <input
                   type="number"
-                  style={{ width: "100%", border: "1px solid #d1d5db", borderRadius: 4, padding: "6px 10px", fontSize: 13, background: "#fff", color: "#111" }}
+                  className="terminal-input py-2 text-sm"
                   value={req.timeoutMs}
                   onChange={(e) => updateRequest(i, "timeoutMs", Number(e.target.value))}
                 />
@@ -173,9 +174,9 @@ export default function NewCollectionPage() {
             </div>
 
             <div>
-              <label style={{ fontSize: 12, color: "#6b7280", display: "block", marginBottom: 4 }}>URL</label>
+              <label className="mb-1 block text-xs terminal-muted">URL</label>
               <input
-                style={{ width: "100%", border: "1px solid #d1d5db", borderRadius: 4, padding: "6px 10px", fontSize: 13, fontFamily: "monospace", background: "#fff", color: "#111" }}
+                className="terminal-input terminal-code py-2 text-sm"
                 value={req.url}
                 onChange={(e) => updateRequest(i, "url", e.target.value)}
                 placeholder="https://api.example.com/endpoint"
@@ -188,7 +189,7 @@ export default function NewCollectionPage() {
       <button
         onClick={handleSubmit}
         disabled={submitting}
-        style={{ background: "#111827", color: "#fff", border: "none", borderRadius: 6, padding: "10px 20px", fontSize: 14, cursor: submitting ? "not-allowed" : "pointer", opacity: submitting ? 0.6 : 1 }}
+        className="terminal-button"
       >
         {submitting ? "Creating..." : "Create Collection"}
       </button>
