@@ -9,8 +9,8 @@ html {
 }
 
 body {
-  background-color: #000000 !important;
-  color: #e7ece7 !important;
+  background-color: #0f1112 !important;
+  color: #d7dcd8 !important;
   margin: 0;
   padding: 0;
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -33,45 +33,45 @@ button {
 }
 
 .terminal-shell {
-  background: #000000;
-  color: #e7ece7;
+  background: #0f1112;
+  color: #d7dcd8;
 }
 
 .terminal-panel {
-  background: #050505;
-  border: 1px solid #1a1f1d;
+  background: #17191a;
+  border: 1px solid #2f3333;
   border-radius: 12px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.85), 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 18px rgba(8,8,8,0.35);
 }
 
 .terminal-panel-strong {
-  background: #030303;
-  border: 1px solid #1f2422;
+  background: #141617;
+  border: 1px solid #353838;
 }
 
 .terminal-muted {
-  color: #9aa19a;
+  color: #b9bfb9;
 }
 
 .terminal-input {
   width: 100%;
-  border: 1px solid #232827;
+  border: 1px solid #3a3f3f;
   border-radius: 8px;
   padding: 0.7rem 0.85rem;
-  background: #050505;
-  color: #f0f2f0;
+  background: #1b1d1e;
+  color: #e0e2e0;
   outline: none;
 }
 
 .terminal-input:focus {
-  border-color: #4d5550;
-  box-shadow: 0 0 0 2px rgba(90, 96, 94, 0.22);
+  border-color: #6b7170;
+  box-shadow: 0 0 0 3px rgba(104,110,108,0.12);
 }
 
 .terminal-button {
-  border: 1px solid #252b28;
-  background: #060606;
-  color: #edf0ed;
+  border: 1px solid #3b3f3f;
+  background: #191b1c;
+  color: #eceeea;
   border-radius: 8px;
   padding: 0.7rem 1rem;
   cursor: pointer;
@@ -79,8 +79,8 @@ button {
 }
 
 .terminal-button:hover {
-  background: #101110;
-  border-color: #424845;
+  background: #212324;
+  border-color: #5a5f5f;
 }
 
 .terminal-button:disabled {
@@ -89,11 +89,11 @@ button {
 }
 
 .terminal-link {
-  color: #b7c0b7;
+  color: #aeb6ae;
 }
 
 .terminal-link:hover {
-  color: #eef2ee;
+  color: #e6e9e6;
 }
 
 .terminal-code {
